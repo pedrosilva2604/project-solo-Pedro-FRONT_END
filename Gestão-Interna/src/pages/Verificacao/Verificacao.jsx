@@ -14,7 +14,7 @@ function Verificacao() {
         <input type="text" name="id-conta" placeholder="ID da Conta"  />
         <FileInput />
 
-        <button type='button'> Enviar Dados </button>
+        <button type='button'> Enviar Dados Para Análise </button>
       </form>
 
      

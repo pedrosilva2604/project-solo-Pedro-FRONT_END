@@ -1,0 +1,115 @@
+:root{
+  --primary:#366885;
+  --accent:#7895ac;
+  --white:#fff;
+  --dark:#265e7e;
+  --muted:#7e9eb1;
+}
+
+/* wrapper da página de histórico */
+.search-bar-container{
+  max-width: 1100px;
+  margin: 80px auto 40px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* bloco do filtro/busca (topo) */
+.search-filter{
+  background: var(--primary);
+  color: var(--white);
+  border: 1px solid color-mix(in srgb, var(--dark) 40%, transparent);
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+/* inputs e botão dentro do filtro */
+.search-filter input[type="text"],
+.search-filter input[type="search"]{
+  width: 100%;
+  height: 40px;
+  border-radius: 30px;
+  border: 1px solid var(--dark);
+  background: var(--muted);
+  color: var(--white);
+  padding: 0 14px;
+  font-size: 15px;
+  outline: none;
+}
+
+.search-filter button{
+  height: 40px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 30px;
+  background: var(--accent);
+  color: var(--white);
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s ease;
+}
+.search-filter button:hover{ opacity: .85; }
+
+/* bloco dos resultados (lista branca separada) */
+.search-results{
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 12px 24px rgba(0,0,0,.06);
+  overflow: hidden;
+}
+
+/* cabeçalho da tabela/lista */
+.search-results .results-header{
+  display: grid;
+  grid-template-columns: 2fr 2fr 1.2fr 1.2fr 1fr; /* e-mail | nome | data | precisa confirmar | status */
+  gap: 12px;
+  padding: 14px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .3px;
+  color: var(--dark);
+  background: color-mix(in srgb, var(--accent) 18%, var(--white));
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+/* linha de resultado */
+.search-results .results-row{
+  display: grid;
+  grid-template-columns: 2fr 2fr 1.2fr 1.2fr 1fr;
+  gap: 12px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #213547;
+}
+.search-results .results-row:nth-child(odd){
+  background: color-mix(in srgb, var(--muted) 10%, var(--white));
+}
+
+/* status badges opcionais */
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.badge--ok{ background: #e8f7ee; color:#1e7e34; }
+.badge--pending{ background:#f0f5ff; color:#234ea0; }
+.badge--fail{ background:#fdecec; color:#a12626; }
+
+/* responsivo */
+@media (max-width: 860px){
+  .search-filter{ grid-template-columns: 1fr; }
+  .search-results .results-header,
+  .search-results .results-row{
+    grid-template-columns: 1.6fr 1.6fr 1fr 1fr; /* esconda/condense uma coluna se quiser */
+  }
+}
