@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Verificacao from "./pages/Verificacao/Verificacao.jsx";     
 import Historico from "./pages/Historico/Historico.jsx";
-
+import { AnalysisModel } from "./services/fakeStorage.js";
 export default function App() {
+  useEffect(() => {
+      console.log(AnalysisModel.getAll());
+    }, [])
+    
   return (
     <>
       <NavBar />
@@ -14,5 +18,6 @@ export default function App() {
         <Route path="/historico" element={<Historico />} />
       </Routes>
     </>
+
   );
 }

@@ -41,7 +41,7 @@
   color: var(--white);
   padding: 0 14px;
   font-size: 15px;
-  outline: none;
+ 
 }
 
 .search-filter button{
@@ -78,6 +78,7 @@
   color: var(--dark);
   background: color-mix(in srgb, var(--accent) 18%, var(--white));
   border-bottom: 1px solid rgba(0,0,0,.05);
+ 
 }
 
 /* linha de resultado */
