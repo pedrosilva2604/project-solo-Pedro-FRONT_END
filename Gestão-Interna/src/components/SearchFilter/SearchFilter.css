@@ -1,0 +1,89 @@
+:root{
+  --primary:#366885;
+  --accent:#7895ac;
+  --white:#fff;
+  --dark:#265e7e;
+  --muted:#7e9eb1;
+}
+
+/* Container do input + botão (posicionamento relativo) */
+.Search {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* Input de busca */
+#Text-Search {
+  width: 100%;
+  height: 44px;
+  padding: 10px 48px 10px 14px; /* espaço à direita para o botão */
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: var(--white);
+  color: var(--dark);
+  font-size: 15px;
+  outline: none;
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+#Text-Search::placeholder {
+  color: var(--muted);
+}
+
+/* foco elegante no input */
+#Text-Search:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+/* Botão com a lupa “dentro” do input */
+.Search > button[aria-label="Buscar"] {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  height: 36px;
+  width: 36px;
+  display: grid;            /* centraliza o ícone */
+  place-items: center;
+  padding: 0;               /* ícone puro */
+  border: 0;
+  border-radius: 10px;
+  background: var(--primary);
+  cursor: pointer;
+  transition: background .15s ease, transform .06s ease, opacity .15s ease;
+}
+
+/* Ícone da lupa dentro do botão */
+.Search > button[aria-label="Buscar"] > img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  /* se sua Lupa.svg for preta e você quiser branca dentro do botão,
+     use um SVG com 'fill="currentColor"' e troque por <svg>. Para <img>,
+     só é possível via 'filter', que nem sempre fica perfeito:
+     filter: brightness(0) invert(1); */
+}
+
+.Search > button[aria-label="Buscar"]:hover {
+  background: var(--dark);
+}
+
+.Search > button[aria-label="Buscar"]:active {
+  transform: translateY(-50%) scale(0.98);
+}
+
+.Search > button[aria-label="Buscar"]:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* Acessibilidade: foco via teclado no botão */
+.Search > button[aria-label="Buscar"]:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  outline-offset: 2px;
+}
+
+/* Responsivo */

@@ -18,16 +18,9 @@
 
 /* bloco do filtro/busca (topo) */
 .search-filter{
-  background: var(--primary);
-  color: var(--white);
-  border: 1px solid color-mix(in srgb, var(--dark) 40%, transparent);
-  border-radius: 12px;
-  padding: 16px;
   display: grid;
-  grid-template-columns: 1fr auto;
   gap: 12px;
   align-items: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
 }
 
 /* inputs e botão dentro do filtro */

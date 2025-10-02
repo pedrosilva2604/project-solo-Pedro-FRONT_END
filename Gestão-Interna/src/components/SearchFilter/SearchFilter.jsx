@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useCallback} from "react";
 import "./SearchFilter.css";
 import {debounce} from "lodash";
+import Lupa from "../../Assets/Lupa.svg"
 
 
 function SearchFilter() {
@@ -17,7 +18,7 @@ function SearchFilter() {
     useEffect(() => {
         return () => debouncedSet.cancel();
     }, [debouncedSet]);
-
+    
 
     function handleOnChange(event) {
         setQuery(event.target.value);
@@ -33,6 +34,9 @@ function SearchFilter() {
              onChange={handleOnChange} 
              placeholder="Search"/>
 
+            <button type="submit" aria-label="Buscar">
+                <img src={Lupa} alt="Pesquisar" />
+            </button>
 
         </div>
     );
