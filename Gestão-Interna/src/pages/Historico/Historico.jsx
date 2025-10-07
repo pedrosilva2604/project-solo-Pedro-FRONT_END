@@ -6,7 +6,7 @@ import SearchFilter from "../../components/SearchFilter/SearchFilter";
 const usuariosVerificados = [
   {
     id: 1,
-    nome: "Pedro",
+    nome: "",
     Email: "pf17@hotmail.com",
     Telefone: "219712152094",
     contaId: 123456789,
@@ -14,7 +14,7 @@ const usuariosVerificados = [
   },
   {
     id: 2,
-    nome: "Nilton",
+    nome: "",
     Email: "nsilvafilho1@gmail.com",
     Telefone: "21973382788",
     contaId: 12802489,
@@ -22,7 +22,7 @@ const usuariosVerificados = [
   },
   {
     id: 3,
-    nome: "João",
+    nome: "",
     Email: "joao@gmail.com",
     Telefone: "21999823045",
     contaId: 80923850,
@@ -30,7 +30,7 @@ const usuariosVerificados = [
   },
   {
     id: 4,
-    nome: "Renata",
+    nome: "",
     Email: "renata21@gmail.com",
     Telefone: "21971037696",
     contaId: 8250283095,
@@ -39,6 +39,9 @@ const usuariosVerificados = [
 ];
 
 function Historico() {
+
+  const defaultName = "-"
+
   const [data] = useState(usuariosVerificados);
   const [filteredData, setFilteredData] = useState(usuariosVerificados);
 
@@ -71,11 +74,11 @@ function Historico() {
 
         { filteredData.map((usuarios) => (
           <div className="results-row" key={usuarios.id}>
-            <p>{usuarios.nome ?? "-"}</p>
-            <p>{usuarios.Email ?? "-"}</p>
-            <p>{usuarios.Telefone ?? "-"}</p>
-            <p>{usuarios.contaId ?? "-"}</p>
-            <p>{usuarios.Status ?? "-"}</p>
+            <p>{usuarios.nome == null || usuarios.nome == "" ? defaultName : usuarios.nome}</p>
+            <p>{usuarios.Email == null || usuarios.Email == "" ? defaultName : usuarios.Email}</p>
+            <p>{usuarios.Telefone == null || usuarios.Telefone == "" ? defaultName : usuarios.Telefone}</p>
+            <p>{usuarios.contaId == null || usuarios.contaId == "" ? defaultName : usuarios.contaId}</p>
+            <p>{usuarios.Status == null ||  usuarios.Status == "" ? defaultName : usuarios.Status}</p>
           </div>
         ))}
       </div>
