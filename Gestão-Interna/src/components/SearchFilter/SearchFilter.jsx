@@ -1,26 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import "./SearchFilter.css";
 import Lupa from "../../Assets/Lupa.svg";
 
-function SearchFilter({ onSearch }) {
-  const [search, setSearch] = useState("");
+function SearchFilter({ onSearch, value, setValue }) {
 
   const handleInputChange = (event) => {
-    setSearch(event.target.value);
-    onSearch(event.target.value);
+    setValue(event.target.value);
   };
   
+  const handleSubmitSearch = () => {
+    onSearch(value);
+  }
+
+  const handleKeyPressSearch = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault()
+      handleSubmitSearch();
+    }
+  };
+
   return (
     <div className="Search">
       <input
         type="text"
         id="Text-Search"
-        value={search}
+        value={value}
         onChange={handleInputChange}
+        onKeyDown={handleKeyPressSearch}
         placeholder="Search"
       />
 
-      <button type="submit" aria-label="Buscar">
+      <button type="submit" aria-label="Buscar" onClick={handleSubmitSearch}>
         <img src={Lupa} alt="Pesquisar" />
       </button>
     </div>

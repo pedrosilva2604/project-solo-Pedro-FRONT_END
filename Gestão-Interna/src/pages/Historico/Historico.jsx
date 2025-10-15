@@ -1,12 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import "./Historico.css";
 import SearchFilter from "../../components/SearchFilter/SearchFilter";
 
+const fakeDB = [ {
+    id: 5,
+    nome: "Nina",
+    Email: "nina70@gmail.com",
+    Telefone: "21973382788",
+    contaId: 123463636,
+    Status: "Aprovado",
+  },
+  {
+    id: 6,
+    nome: "Nunes",
+    Email: "antonionuneshotmail.com",
+    Telefone: "21973457477",
+    contaId: 1232526,
+    Status: "Reprovado",
+  },
+
+]
+
 const usuariosVerificados = [
   {
     id: 1,
-    nome: "",
+    nome: "Pedro",
     Email: "pf17@hotmail.com",
     Telefone: "219712152094",
     contaId: 123456789,
@@ -14,7 +33,7 @@ const usuariosVerificados = [
   },
   {
     id: 2,
-    nome: "",
+    nome: "Nilton",
     Email: "nsilvafilho1@gmail.com",
     Telefone: "21973382788",
     contaId: 12802489,
@@ -22,15 +41,15 @@ const usuariosVerificados = [
   },
   {
     id: 3,
-    nome: "",
-    Email: "joao@gmail.com",
+    nome: "Lopes",
+    Email: "lopes@gmail.com",
     Telefone: "21999823045",
     contaId: 80923850,
     Status: "Reprovado",
   },
   {
     id: 4,
-    nome: "",
+    nome: "Renata",
     Email: "renata21@gmail.com",
     Telefone: "21971037696",
     contaId: 8250283095,
@@ -42,28 +61,71 @@ function Historico() {
 
   const defaultName = "-"
 
-  const [data] = useState(usuariosVerificados);
-  const [filteredData, setFilteredData] = useState(usuariosVerificados);
+  const [search, setSearch] = useState("");
 
-  const handleSearch = (query) => {
-    if (!query) {
-      setFilteredData(data);
-      return;
-    }
+  const [filteredDataLocal, setFilteredDataLocal] = useState(usuariosVerificados);
 
-    const results = data.filter((item) =>
-      item.nome.toLowerCase().includes(query.toLowerCase()),
+useEffect(() => {
+
+  const query = search.toLowerCase();
+
+  if(!query) {
+    setFilteredDataLocal(usuariosVerificados);
+    return
+  }
+
+  const tenLastUsersVerified = usuariosVerificados.filter(usuarios => {
+    return (
+      usuarios.nome.toLowerCase().includes(query) ||
+      usuarios.Email.toLowerCase().includes(query)
     );
-    setFilteredData(results);
-  };
+  })
+
+  setFilteredDataLocal(tenLastUsersVerified)
+
+}, [search])
+
+
+
+const handleSearchClickOrEnter = () => {
+
+
+  const query = search.toLowerCase();
+
+  if(!query) {
+    setFilteredDataLocal(usuariosVerificados);
+    return
+  }
+
+
+  const deepSearch = fakeDB.filter(usuarios => {
+    return (
+      usuarios.nome.toLowerCase().includes(query) ||
+      usuarios.Email.toLowerCase().includes(query)
+    );
+  })
+
+
+  if(deepSearch.length > 0) {
+    setFilteredDataLocal(deepSearch);
+  } else if(!query) {
+    setFilteredDataLocal([]);
+  } else {
+    setFilteredDataLocal(filteredDataLocal)
+  }
+
+}
 
   return (
     <div className="search-bar-container">
       <div className="search-filter">
-        <SearchFilter onSearch={handleSearch} />
+        <SearchFilter value={search} setValue={setSearch} onSearch={handleSearchClickOrEnter} />
       </div>
+      <div>
+         <h2 id="tenLast">Últimos Dez Clientes Verificados</h2>
+      </div>
+
       <div className="search-results">
-        {/* só pra enxergar o bloco agora */}
         <div className="results-header">
           <span>Nome</span>
           <span>E-mail</span>
@@ -72,7 +134,7 @@ function Historico() {
           <span>Status</span>
         </div>
 
-        { filteredData.map((usuarios) => (
+        {filteredDataLocal.map((usuarios) => (
           <div className="results-row" key={usuarios.id}>
             <p>{usuarios.nome == null || usuarios.nome == "" ? defaultName : usuarios.nome}</p>
             <p>{usuarios.Email == null || usuarios.Email == "" ? defaultName : usuarios.Email}</p>
