@@ -74,14 +74,14 @@ useEffect(() => {
     return
   }
 
-  const tenLastUsersVerified = usuariosVerificados.filter(usuarios => {
+  const searchUserInTenLastUsersVerified = usuariosVerificados.filter(usuarios => {
     return (
       usuarios.nome.toLowerCase().includes(query) ||
       usuarios.Email.toLowerCase().includes(query)
     );
   })
 
-  setFilteredDataLocal(tenLastUsersVerified)
+  setFilteredDataLocal(searchUserInTenLastUsersVerified)
 
 }, [search])
 
